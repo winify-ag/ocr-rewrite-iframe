@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+body {
+    background: #f0f0f0;
+    margin: 0 auto;
+    color: #6d6e71;
+    font: 15px Roboto, Arial, sans-serif;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+fieldset {
+    margin: 10px 10px -30px;
+    border: none;
+    width: auto;
+    padding: 0;
+}
+.dropdown {
+    background-image: url("../images/ic_arrow_down.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    background-color:#FFF;
+    float: left;
+    overflow: hidden;
+}
+
+select {
+    background: transparent;
+    padding: 5px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    height: 30px !important;
+    border: 1px solid #CCC;
+    width:100%;
+}
+
+dl, dt, dd {
+    margin: 0;
+    -webkit-margin-start: 0;
+}
+
+legend {
+    font-size: 12px;
+    color: #999;
+}
+
+.legends{
+    margin:0 0 15px 0;
+}
+
+p {
+    margin: 0;
+}
+.buttonset {
+    margin-bottom: 10px;
+    font-size: 13px !important;
+}
+#card_holder {
+    width: 96%;
+    margin: 0 0 20px 0;
+}
+#cards_div {
+    width: 100%;
+}
+#brand_field{
+    cursor:pointer;
+    margin: 60px 0 17px 0;
+}
+
+#paymentForm {
+    width: 100%;
+}
+
+#card_number {
+    cursor:pointer;
+    width: 61%;
+    float: left;
+    margin: 0 0 20px 0;
+}
+
+#card_secure_code {
+    width: 30%;
+    float: right;
+    margin: 0 0 20px 0;
+}
+
+#currency_div {
+    width: 30%;
+}
+
+#amount {
+    width: 69%;
+    float: right;
+}
+
+#expiryMonth_div {
+    width: 49%;
+    float: left;
+    display: block;
+    margin: 0 0 20px 0;
+}
+
+#expiryYear_div {
+    width: 50%;
+    float: right;
+    display: block;
+    margin: 0 0 20px 0;
+}
+
+.alert {
+    color: #FF0000;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 35px;
+}
+
+#submitBtn {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    border:thin #666;
+    background-color:#474747;
+    height:46px;
+    color:#FFF;
+}
+
+#rememberCard_div{
+    margin: 0 0 20px 0;
+}
+
+span{
+    font-size:12px;
+    }
+
+.shadow {
+    border: 1px solid #CCC;
+    height: 30px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.error input { border: 1px solid #FF0000; }
+
+.error select { border: 1px solid #FF0000; }
+
+.error span label { color: #FF0000; }
+
+#loader {
+    position: absolute;
+    left: 38%;
+    top: 30%;
+    margin-left: 0px; /* -1 * image width / 2 */
+    margin-top: 0px;  /* -1 * image height / 2 */
+}
+
+#blocker {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #f0f0f0;
+    display: none;
+    z-index: 1000;
+}
+
+#blur {
+    background: rgba(255,255,255,0.60);
+    height: 100%;
+    display: none;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    z-index: 10;
+}
+input[type=button], input[type=submit] { cursor: pointer; }
+.error-border { border: solid 1px red; }
+.error-border-color { border-color: red; }
+#brand_field span { font-size: 15px; }

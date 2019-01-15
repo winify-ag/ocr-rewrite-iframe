@@ -1,0 +1,290 @@
+@charset "UTF-8";
+
+body {
+    background: #bbbbbb;
+    margin: 0 auto;
+    color: #6d6e71;
+    font: 13px Arial, sans-serif;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+
+fieldset {
+    border: none;
+    width: auto;
+    padding: 0;
+}
+
+.dropdown {
+    background-image: url("../images/ic_arrow_down.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    background-color:#FFF;
+    float: left;
+    overflow: hidden;
+}
+
+select {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #CCC;
+    height: 23px;
+    width: 100%;
+}
+
+dl, dt, dd {
+    margin: 0;
+    -webkit-margin-start: 0;
+}
+
+legend {
+    font-size: 12px;
+    color: #999;
+}
+
+.legends{
+    margin:0 0 15px 0;
+}
+
+p {
+    margin: 0;
+}
+
+.buttonset {
+    margin-bottom: 10px;
+    font-size: 13px !important;
+}
+
+#card_holder {
+    float: left;
+    margin: 0 0 15px 0;
+    width: 250px;
+}
+
+#cards_div {
+    width: 100%;
+}
+
+#brand_field {
+    margin: 30px 0 5px 0;
+    position: relative;
+}
+
+#brand_field img {
+	margin: -2px 35px 0px 0px;
+}
+
+#brand_field input {
+	margin-bottom: 5px;
+	position: relative;
+	top: -8px;
+}
+
+#paymentForm {
+    border: solid 1px #e7e9eb;
+    margin: 20px;
+    padding: 20px;
+    width: 490px;
+}
+
+#card_number {
+    width: 250px;
+    float: left;
+    margin: 0 0 15px 0;
+}
+
+#card_secure_code {
+    width: 50px;
+    float: left;
+    margin: 0 0 40px 0;
+}
+
+#currency_div {
+    width: 30%;
+}
+
+#amount {
+    width: 69%;
+    float: right;
+}
+
+#expiryMonth_div {
+    width: 120px;
+    float: left;
+    display: block;
+    margin: 0 0 15px 0;
+}
+
+#expiryYear_div {
+    width: 120px;
+    float: left;
+    display: block;
+    margin: 0 0 15px 20px;
+}
+
+.alert {
+    color: #FF0000;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    
+}
+
+#alert {
+    color: #FF0000;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+
+}
+
+#cancelBtn, #submitBtn {
+    width: 132px;
+    display: block;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    border: thin #666;
+    background-color: #f8b333;
+    height: 25px;
+    color: #474747;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+#cancelBtn {
+	clear: both;
+	float: left;
+}
+
+#submitBtn {
+    float: right;
+    margin-right: 70px;
+}
+
+#rememberCard_div {
+    margin: 0 0 20px 0;
+}
+
+span {
+    font-size:12px;
+}
+
+.shadow {
+    border: 1px solid #CCC;
+    height: 22px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.error input { border: 1px solid #FF0000; }
+
+.error select { border: 1px solid #FF0000; }
+
+.error span label { color: #FF0000; }
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -16px; /* -1 * image width / 2 */
+    margin-top: -16px;  /* -1 * image height / 2 */
+}
+
+#blocker {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #f0f0f0;
+    display: none;
+    z-index: 1000;
+}
+
+label {
+    clear: both;
+    color: #474747;
+    display: block;
+    float: left;
+    margin-top: 6px;
+    position: relative;
+    width: 154px;
+}
+
+#payment_information {
+	color: #f16402;
+	font-weight: bold;
+	margin: 10px 0px;
+}
+
+#amount_box {
+	background-color: #E8E9EB;
+	color: #474747;
+	font-size: 15pt;
+	font-weight: bold;
+	margin: 10px 0px;
+	padding: 10px;
+	position: relative;
+}
+
+#amount_box div {
+	left: 295px;
+	position: absolute;
+	top: 11px;
+}
+
+#legal_notice {
+	clear: both;
+	color: #888888;
+	font-size: 13px;
+	line-height: 150%;
+	padding: 20px 0px;
+}
+
+#cashless_footer {
+	position: relative;
+}
+
+#cashless_footer div {
+	font-size: 12px;
+	position: absolute;
+	right: 220px;
+	top: 21px;
+}
+
+#cashless_footer img {
+    float: right;
+    height: 58px;
+    width: 215px;
+}
+
+#blur {
+    background: rgba(255,255,255,0.60);
+    display: none;
+    height: 100%;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+#blur #loader {
+    position: absolute;
+    top: 180px;
+    left: 200px;
+    z-index: 11;
+}
+
+input[type=button] { cursor: pointer; }
+.error-border {    border: solid 1px red; }
+.error-border-color { border-color: red; }

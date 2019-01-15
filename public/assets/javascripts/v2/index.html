@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">     
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+<script src="../jquery-2.1.0.min.js"></script>
+<script src="utils.js"></script>
+<script src="muume.js"></script>
+<script src="ops.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	var card = new Card(number = "5223450000000007", cardHolder = "jan kowalski", cvv = 090, expMonth = 12, expYear = 12);
+	console.log("card: " + card.number);
+	var validator = Validator;
+	validator.card = card;
+	console.log("isNumberValid(): " + validator.isNumberValid());
+</script>
+</body>
+</html>

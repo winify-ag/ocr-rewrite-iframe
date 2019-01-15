@@ -1,0 +1,19 @@
+.ocr-wv-camera-area #openCamera {
+  display: block;
+}
+
+@media screen and (orientation: landscape) {
+  .ocr-wv-camera-area #openCamera > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+  }
+  .ocr-wv-camera-area #openCamera > div > img {
+    height: 50%;
+  }
+  .ocr-wv-camera-area #openCamera>div>span {
+    margin-top: 20px;
+  }
+}

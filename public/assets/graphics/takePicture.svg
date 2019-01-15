@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2@2x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Ingenico-Shop-Prototype" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16.Scan-initiate-card-Overlay-+-Corners" transform="translate(-153.000000, -578.000000)" fill="#FFFFFF">
+            <g id="Group-2" transform="translate(153.000000, 578.000000)">
+                <path d="M35,0 C54.298125,0 70,15.701875 70,35 C70,54.298125 54.298125,70 35,70 C15.701875,70 0,54.298125 0,35 C0,15.701875 15.701875,0 35,0 Z M35,3 C17.356,3 3,17.356 3,35 C3,52.644 17.356,67 35,67 C52.644,67 67,52.644 67,35 C67,17.356 52.644,3 35,3 Z" id="Combined-Shape"></path>
+                <path d="M6,35 C6,50.989875 19.010125,64 35,64 C50.989875,64 64,50.989875 64,35 C64,19.010125 50.989875,6 35,6 C19.010125,6 6,19.010125 6,35 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

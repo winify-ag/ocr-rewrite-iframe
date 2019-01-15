@@ -1,0 +1,15 @@
+#paymentForm input[type=text]:focus { border: 1px solid #6d6e71 !important; }
+#paymentForm #account_holder { display: none; }
+#paymentForm #account_holder_firstname { clear: both; float: left; width: 45% !important; }
+#paymentForm #account_holder_lastname { float: right; width: 45% !important; }
+#paymentForm #sepa_crop_container { max-height: 23px; overflow:hidden; }
+#paymentForm #sepa_crop_container img { width: 80px; }
+#paymentForm #sepa_mandate { color: #b9bdc5; font-size: 12px !important; line-height: 20px; margin-bottom: 20px; margin-top: 10px;  }
+#paymentForm #house_nr { clear: both; float: left; width: 45% !important; }
+#paymentForm #post_code { float: right; width: 45% !important; }
+#paymentForm #account_number { display: none; }
+#paymentForm #creditor_info { background-color: #FFFFFF; clear: both; padding: 20px; }
+#paymentForm #creditor_info h1 { font: 15px Roboto, Arial, sans-serif !important; font-weight: bold !important; }
+#paymentForm #creditor_info div { color: #b9bdc5; font-size: 12px; }
+#paymentForm #sepa_legal_notice { font-size: 12px; line-height: 20px; margin-top: 10px; }
+#paymentForm #directDebitBtn { background-color: #f8b333; border: none; color: #FFFFFF; padding: 20px 12px; line-height: 1.42857; width: 100%; }

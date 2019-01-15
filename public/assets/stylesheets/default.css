@@ -1,0 +1,51 @@
+body {
+	font-family: serif;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+td.card {
+	padding-left: 1.0em;
+	padding-right: 1.0em;
+}
+
+td.label {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-right: 1.5em;
+}
+
+td.select {
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+}
+
+td.radio {
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+}
+
+td.submit {
+	padding-left: 14.6em;
+}
+
+input.submit {
+	min-width: 120px;
+	max-width: 120px;
+	width: 120px; 
+}
+
+select {
+	width: 235px;
+}
+
+select.ed {
+	width: 175px;
+}

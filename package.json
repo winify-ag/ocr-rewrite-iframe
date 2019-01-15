@@ -1,0 +1,15 @@
+{
+  "name": "ocr-rewrite-iframe",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winify-ag/ocr-rewrite-iframe.git"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0"
+  }
+}
