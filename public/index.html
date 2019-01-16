@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" media="screen" href="assets/stylesheets/muume_wpf_vwfs_cc.css">
     <link rel="stylesheet" media="screen" href="assets/stylesheets/ocr.css">
-    <link rel="stylesheet" media="screen" href="$CSS_PATH">
+    <link rel="stylesheet" media="screen"
+        href="https://unpkg.com/@igodorogea/ingenico-gateway-custom-design@1.1.3/dist/styles/main.css">
+    <link rel="stylesheet" href="assets/overwrite.css" />
     <script src="assets/javascripts/jquery-2.1.0.min.js"></script>
     <script src="assets/javascripts/cleave.min.js"></script>
     <script src="assets/javascripts/v2/utils-ocr.js"></script>
@@ -17,91 +19,115 @@
 </head>
 
 <body>
-<div id="blur">
-    <div id="loader">
-        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    </div>
-</div>
-<div class="ocr-wv-camera-area">
-    <div id="openCamera">
-        <div>
-            <img src="assets/graphics/phone.svg" />
-            <span>Please, turn your phone in landscape mode<br />and place your card horizontally.<br />Tap the screen when ready.</span>
+    <div id="blur">
+        <div id="loader">
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
-    <div id="ocrLoader">
+    <div class="ocr-wv-camera-area">
+        <div id="openCamera">
+            <div>
+                <img src="assets/graphics/phone.svg" />
+                <span>Please, turn your phone in landscape mode<br />and place your card horizontally.<br />Tap the screen when ready.</span>
+            </div>
+        </div>
+        <div id="ocrLoader">
             <span id="ocrInProgressMessage">Please wait... image recognition in progress<br />
                 <img src="assets/graphics/ajaxLoader.gif">
             </span>
-        <span id="ocrDoneMessage">DONE! Check your data with picture!</span>
-    </div>
-    <form id="ocrForm">
-        <input type="file" id="data" name="file" accept="image/*;capture=camera" required capture >
-        <button id="sendOCR" type="submit"></button>
-    </form>
-
-    <div id="videoWrapper">
-        <input type="button" id="takeAPicture" value="" />
-        <video id="video" autoplay playsinline></video>
-    </div>
-
-    <canvas id="canvas" style="display: none;"></canvas>
-
-    <div id="previewPicture">
-        <span id="takenPicture" />
-    </div>
-</div>
-<div class="ocr-wv-form-area">
-
-    <form id="paymentForm" method="post" action="payment" >
-        <fieldset>    <div id="alert"></div>
-
-    <div class="ocr-wv-form-card-number">
-        <label>[ocr_card_number]</label> <!-- Card number -->
-        <div id="brand_logo">
-            <input type="radio" value="VISA" name="card_type"><img src="assets/graphics/cc_brands/visa_logo.png" alt="">
-            <input type="radio" value="MASTER" name="card_type"><img src="assets/graphics/cc_brands/master_logo.png" alt="">
-            <input type="radio" value="AMEX" name="card_type"><img src="assets/graphics/cc_brands/amex_logo.png" alt="">
-            <input type="radio" value="DINERS" name="card_type"><img src="assets/graphics/cc_brands/diners_logo.png" alt="">
-            <input type="radio" value="DISCOVER" name="card_type"><img src="assets/graphics/cc_brands/discover_logo.png" alt="">
-            <input type="radio" value="JCB" name="card_type"><img src="assets/graphics/cc_brands/jcb_logo.png" alt="">
-            <input type="radio" value="UNIONPAY" name="card_type"><img src="assets/graphics/cc_brands/unionpay_logo.png" alt="">
-            <input type="radio" value="MAESTRO" name="card_type"><img src="assets/graphics/cc_brands/maestro_logo.png" alt="">
+            <span id="ocrDoneMessage">DONE! Check your data with picture!</span>
         </div>
-        <input id="card_number" name="card_number" type="tel" class="shadow" value="" />
-    </div>
+        <form id="ocrForm">
+            <input type="file" id="data" name="file" accept="image/*;capture=camera" required capture>
+            <button id="sendOCR" type="submit"></button>
+        </form>
 
-    <div class="ocr-wv-form-expiry-date">
-        <label>[ocr_expiry_date]</label>
-        <div id="expiryMonthYear_div">
-            <input type="tel" id="expiration_month_year" name="expiration_month_year" class="shadow" />
-            <input type="hidden" id="expiration_month" name="expiration_month" />
-            <input type="hidden" id="expiration_year" name="expiration_year" />
+        <div id="videoWrapper">
+            <input type="button" id="takeAPicture" value="" />
+            <video id="video" autoplay playsinline></video>
+        </div>
+
+        <canvas id="canvas" style="display: none;"></canvas>
+
+        <div id="previewPicture">
+            <span id="takenPicture" />
         </div>
     </div>
+    <div class="ocr-wv-form-area">
 
-    <div class="ocr-wv-form-cvv">
-        <label>[ocr_cvv]</label>
-        <input id="card_secure_code" name="card_secure_code" type="tel" class="shadow" value="">
+        <form id="paymentForm" method="post" action="payment">
+            <fieldset>
+                <div id="alert"></div>
+
+                <div class="ocr-wv-form-card-number">
+                    <label>Card number</label> <!-- Card number -->
+                    <div id="brand_logo">
+                        <input type="radio" value="VISA" name="card_type"><img
+                        src="assets/graphics/cc_brands/visa_logo.png" alt="">
+                        <input type="radio" value="MASTER" name="card_type"><img
+                        src="assets/graphics/cc_brands/master_logo.png" alt="">
+                        <input type="radio" value="AMEX" name="card_type"><img
+                        src="assets/graphics/cc_brands/amex_logo.png" alt="">
+                        <input type="radio" value="DINERS" name="card_type"><img
+                        src="assets/graphics/cc_brands/diners_logo.png" alt="">
+                        <input type="radio" value="DISCOVER" name="card_type"><img
+                        src="assets/graphics/cc_brands/discover_logo.png" alt="">
+                        <input type="radio" value="JCB" name="card_type"><img
+                        src="assets/graphics/cc_brands/jcb_logo.png" alt="">
+                        <input type="radio" value="UNIONPAY" name="card_type"><img
+                        src="assets/graphics/cc_brands/unionpay_logo.png" alt="">
+                        <input type="radio" value="MAESTRO" name="card_type"><img
+                        src="assets/graphics/cc_brands/maestro_logo.png" alt="">
+                    </div>
+                    <input id="card_number" name="card_number" type="tel" class="shadow" value="" />
+                </div>
+
+                <div class="ocr-wv-form-expiry-date">
+                    <label>Expiry date</label>
+                    <div id="expiryMonthYear_div">
+                        <input type="tel" id="expiration_month_year" name="expiration_month_year" class="shadow" />
+                        <input type="hidden" id="expiration_month" name="expiration_month" />
+                        <input type="hidden" id="expiration_year" name="expiration_year" />
+                    </div>
+                </div>
+
+                <div class="ocr-wv-form-cvv">
+                    <label>CVV</label>
+                    <input id="card_secure_code" name="card_secure_code" type="tel" class="shadow" value="">
+                </div>
+
+                <div class="ocr-wv-form-card-holder">
+                    <label>Name on card</label>
+                    <input id="card_holder" name="card_holder" type="text" class="shadow" value="">
+                </div>
+
+                <div id="tc" style="display: none;">
+                    <input type="checkbox" id="tc-muume" checked="">
+                    I accept the <a href="https://muume.com/en/data-protection">Privacy Policy</a> and <a
+                    href="https://muume.com/en/agb-muume/">T&amp;C</a>
+                </div>
+
+            </fieldset>
+        </form>
     </div>
 
-    <div class="ocr-wv-form-card-holder">
-        <label>[ocr_name_on_card]</label>
-        <input id="card_holder" name="card_holder" type="text" class="shadow" value="">
+    <div class="ocr-wv-form-buttons">
+        <input type="button" id="scanAgain" value="Scan again" style="display: none" />
+        <input type="button" id="registrationCardBtn" name="submitBtn" value="Proceed to pay" style="display: none" />
     </div>
-
-    <div id="tc" style="display: none;">
-        <input type="checkbox" id="tc-muume" checked="">
-        I accept the <a href="https://muume.com/en/data-protection">Privacy Policy</a> and <a href="https://muume.com/en/agb-muume/">T&amp;C</a>
-    </div>
-
-</fieldset>
-</form>
-</div>
-
-<div class="ocr-wv-form-buttons">
-    <input type="button" id="scanAgain" value="[ocr_scan_again]" style="display: none" />
-    <input type="button" id="registrationCardBtn" name="submitBtn" value="[ocr_save_card]" style="display: none" />
-</div></body>
+</body>
 
 </html>
