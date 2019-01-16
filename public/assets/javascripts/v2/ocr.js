@@ -7,6 +7,7 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
   }
 
   $(document).ready(function () {
+    var isCameraAllowedByUser = true;
     var scaleFactor = 8;
     var streamObject = null;
     var canvas = $('#canvas')[0];
@@ -51,19 +52,14 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
       $('#expiration_year').val(year);
     });
 
+    $openCamera.on('click', startCamera);
+
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       $video.css('height', $(window).height() + 'px');
       $videoWrapper.hide();
 
-      $openCamera.on('click', function () {
-        startCamera(function () {
-          $openCamera.hide();
-          $videoWrapper.show();
-        });
-      });
-
       $scanAgain.on('click', function () {
-        startCamera(function () {
+        startCameraInVideo(function () {
           resetForm();
           $alert.hide().empty();
           $videoWrapper.show();
@@ -231,21 +227,44 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
       });
     }
 
-    function startCamera(cb) {
+    function startCamera() {
+      if (hasUserMediaApi() && isCameraAllowedByUser) {
+        startCameraInVideo()
+          .then(function () {
+            $openCamera.hide();
+            $videoWrapper.show();
+          })
+          .catch(function (err) {
+            console.log(err);
+            isCameraAllowedByUser = false;
+            startNativeCamera();
+          });
+      } else {
+        startNativeCamera();
+      }
+    }
+
+    function startNativeCamera() {
+      $('#data').trigger('click');
+    }
+
+    function hasUserMediaApi() {
+      return navigator.mediaDevices && navigator.mediaDevices.getUserMedia;
+    }
+
+    function startCameraInVideo() {
       return navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
         .then(function (stream) {
+          var dfd = $.Deferred();
           streamObject = stream;
           $video[0].srcObject = streamObject;
           $video[0].onloadedmetadata = function () {
             context.canvas.width = $video.width();
             context.canvas.height = $video.height();
-            cb();
+            dfd.resolve(stream);
           };
           $video[0].play();
-          return stream;
-        })
-        .catch(function (err) {
-          alert('Error ' + err + ', User agent: ' + navigator.userAgent);
+          return dfd.promise();
         });
     }
 
