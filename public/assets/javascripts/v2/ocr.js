@@ -7,7 +7,6 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
   }
 
   $(document).ready(function () {
-    var isCameraAllowedByUser = true;
     var scaleFactor = 8;
     var streamObject = null;
     var canvas = $('#canvas')[0];
@@ -21,6 +20,7 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
     var $takeAPicture = $('#takeAPicture');
     var $registrationCardBtn = $('#registrationCardBtn');
     var $previewPicture = $('#previewPicture');
+    var hasUserMediaApi = isUserMediaSupported();
 
     // TODO: add docs why this is needed
     if (!$('html').hasClass('mobile')) {
@@ -54,20 +54,24 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
 
     $openCamera.on('click', startCamera);
 
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    if (hasUserMediaApi) {
       $video.css('height', $(window).height() + 'px');
       $videoWrapper.hide();
 
       $scanAgain.on('click', function () {
-        startCameraInVideo(function () {
-          resetForm();
-          $alert.hide().empty();
-          $videoWrapper.show();
-          $takeAPicture.show();
-          $scanAgain.hide();
-          $registrationCardBtn.hide();
-          $previewPicture.hide();
-        });
+        startCameraInVideo()
+          .then(function () {
+            resetForm();
+            $alert.hide().empty();
+            $videoWrapper.show();
+            $takeAPicture.show();
+            $scanAgain.hide();
+            $registrationCardBtn.hide();
+            $previewPicture.hide();
+          })
+          .catch(function (err) {
+            alert(err);
+          });
       });
 
       $takeAPicture.on('click', function () {
@@ -93,6 +97,7 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
         /* $takenPicture.css('background-image', 'url("'+dataUrl+'")').css('width', $video.width()).css('height', $video.height()).css('background-position', "0px 0px"); */
 
         streamObject.getTracks()[0].stop();
+        $video[0].pause();
         $videoWrapper.hide();
         $previewPicture.show();
         $('#ocrLoader').show();
@@ -156,13 +161,8 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
 
       $scanAgain.on('click', function () {
         resetForm();
-        $alert.html('').hide();
-        $('#data').click();
-      });
-
-      $openCamera.on('click', function () {
-        $(this).hide();
-        $('#data').click();
+        $alert.hide().empty();
+        startNativeCamera();
       });
 
       $('#data').on('change', function () {
@@ -228,16 +228,14 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
     }
 
     function startCamera() {
-      if (hasUserMediaApi() && isCameraAllowedByUser) {
+      if (hasUserMediaApi) {
         startCameraInVideo()
           .then(function () {
             $openCamera.hide();
             $videoWrapper.show();
           })
           .catch(function (err) {
-            console.log(err);
-            isCameraAllowedByUser = false;
-            startNativeCamera();
+            alert(err);
           });
       } else {
         startNativeCamera();
@@ -246,10 +244,6 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
 
     function startNativeCamera() {
       $('#data').trigger('click');
-    }
-
-    function hasUserMediaApi() {
-      return navigator.mediaDevices && navigator.mediaDevices.getUserMedia;
     }
 
     function startCameraInVideo() {
@@ -266,6 +260,39 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
           $video[0].play();
           return dfd.promise();
         });
+    }
+
+    function isUserMediaSupported() {
+      // has usermedia
+      // is ios version supported
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        return isSafariIOS()
+          ? isSupportedSafariVersion()
+          : true;
+      }
+      return false;
+    }
+
+    function isSafariIOS() {
+      var nAgt = navigator.userAgent;
+      // is iOS
+      // is Safari and is not Chrome
+      return nAgt.match(/iPhone|iPad|iPod/i) !== null
+        && (/^((?!chrome|android).)*safari/i.test(nAgt)
+          && nAgt.indexOf('CriOS') === -1);
+    }
+
+    function isSupportedSafariVersion() {
+      var allowedVer = [11, 4, 0];
+      var versionParts = /OS (\d+)_(\d+)_?(\d+)?/.exec(navigator.userAgent)
+        .slice(1)
+        .map(function (v) {return parseInt(v);});
+      for (var i = 0; i < versionParts.length; i++) {
+        if (versionParts[i] < allowedVer[i]) {
+          return false;
+        }
+      }
+      return true;
     }
 
     /**

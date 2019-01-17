@@ -5,7 +5,8 @@ var browserSync = require('browser-sync').create();
 gulp.task('default', function () {
   browserSync.init({
     server: 'public',
-    https: true
+    https: true,
+    ghostMode: false
   });
 
   gulp.watch('public/**', function (done) {
