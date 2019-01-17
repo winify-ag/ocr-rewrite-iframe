@@ -7,6 +7,8 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
   }
 
   $(document).ready(function () {
+    $('body').addClass('hide-scroll');
+
     var scaleFactor = 8;
     var streamObject = null;
     var canvas = $('#canvas')[0];
@@ -55,9 +57,6 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
     $openCamera.on('click', startCamera);
 
     if (hasUserMediaApi) {
-      $video.css('height', $(window).height() + 'px');
-      $videoWrapper.hide();
-
       $scanAgain.on('click', function () {
         startCameraInVideo()
           .then(function () {
@@ -99,6 +98,7 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
         streamObject.getTracks()[0].stop();
         $video[0].pause();
         $videoWrapper.hide();
+        $('body').removeClass('hide-scroll');
         $previewPicture.show();
         $('#ocrLoader').show();
         $('#ocrDoneMessage').hide();
@@ -179,6 +179,7 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
         var formData = new FormData(form);
 
         $openCamera.hide();
+        $('body').addClass('hide-scroll');
         $previewPicture.show();
         $('#ocrLoader').show();
         $('#ocrDoneMessage').hide();
@@ -252,6 +253,8 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
           var dfd = $.Deferred();
           streamObject = stream;
           $video[0].srcObject = streamObject;
+          // var settings = stream.getTracks()[0].getSettings();
+          // alert(settings.width + ' [] ' + settings.height + ' [] ' + $(window).width() + ' [] ' + $(window).height());
           $video[0].onloadedmetadata = function () {
             context.canvas.width = $video.width();
             context.canvas.height = $video.height();
