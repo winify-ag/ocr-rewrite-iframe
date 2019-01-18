@@ -7,8 +7,6 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
   }
 
   $(document).ready(function () {
-    $('body').addClass('hide-scroll');
-
     var scaleFactor = 8;
     var streamObject = null;
     var canvas = $('#canvas')[0];
@@ -23,15 +21,17 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
     var $registrationCardBtn = $('#registrationCardBtn');
     var $previewPicture = $('#previewPicture');
     var hasUserMediaApi = isUserMediaSupported();
+    var $form = $('.ocr-wv-form-area');
+    var $buttons = $('.ocr-wv-form-buttons');
 
     // TODO: add docs why this is needed
-    if (!$('html').hasClass('mobile')) {
-      $(window).on('resize', function () {
-        $('body')
-          .css('height', 'auto')
-          .css('width', 'auto');
-      }).trigger('resize');
-    }
+    // if (!$('html').hasClass('mobile')) {
+    //   $(window).on('resize', function () {
+    //     $('body')
+    //       .css('height', 'auto')
+    //       .css('width', 'auto');
+    //   }).trigger('resize');
+    // }
 
     var ua = navigator.userAgent;
     if (ua.indexOf('Android') >= 0) {
@@ -67,6 +67,8 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
             $scanAgain.hide();
             $registrationCardBtn.hide();
             $previewPicture.hide();
+            $form.hide();
+            $buttons.hide();
           })
           .catch(function (err) {
             alert(err);
@@ -98,7 +100,10 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
         streamObject.getTracks()[0].stop();
         $video[0].pause();
         $videoWrapper.hide();
-        $('body').removeClass('hide-scroll');
+
+        $form.show();
+        $buttons.show();
+
         $previewPicture.show();
         $('#ocrLoader').show();
         $('#ocrDoneMessage').hide();
@@ -179,7 +184,6 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
         var formData = new FormData(form);
 
         $openCamera.hide();
-        $('body').addClass('hide-scroll');
         $previewPicture.show();
         $('#ocrLoader').show();
         $('#ocrDoneMessage').hide();
@@ -233,6 +237,8 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
         startCameraInVideo()
           .then(function () {
             $openCamera.hide();
+            $form.hide();
+            $buttons.hide();
             $videoWrapper.show();
           })
           .catch(function (err) {
@@ -345,6 +351,9 @@ OCR_SERVER_URL = 'https://ocr.paycentric.net/ocr/upload';
 
     function readURL(input) {
       if (input.files && input.files[0]) {
+        $form.show();
+        $buttons.show();
+
         var reader = new FileReader();
         reader.onload = function (e) {
           var img = new Image();
